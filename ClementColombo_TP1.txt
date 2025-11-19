@@ -1,0 +1,40 @@
+Clément Colombo
+
+Algorithmes pour la Résolution de Problèmes L3
+TP 1 & 2 Introduction aux algorithmes de recherche non-informé
+
+
+Exercice 1. Un peu de théorie
+
+Question 1.
+- État                   : un moment dans le recherche de la résolution du problème.
+- Espace d'états         : Tous les états qu'on peut atteindre depuis le 1er état (état initial).
+- Action                 : Ce qu'un solveur peut accomplir pour cherche à avancer.
+- Fonction de succession : ce permet d'aller vers un nouvelle état depuis un ancien état et un action donnée.
+- Graphe d'états         : Tous les états reliés par les actions permettant de passer d'un état à un autre.
+
+Question 2.
+Un état du monde réel est complexe et souvent (voire toujours) décoré de surplus d'informations inutiles.
+Alors qu'une description d'état permet de ne conserver que les informations utiles d'un état du monde réel, c'est une abstraction de ce dernier.
+
+
+Exercice 2. Modélisation
+
+Question 1.
+- L'ensemble des états : {(𝓍, 𝓎) : 𝓍 ∈ [0, 3], 𝓎 ∈ [0, 5]}, chaque couple (𝓍, 𝓎) représente le volume d'eau dans chacune des deux cruches (𝓍 pour la cruche de 3 ℓ et 𝓎 pour celle de 5 ℓ).
+
+- L'état initial : Le couple (0, 0), représentant donc les deux cruches vides.
+
+- Les actions :
+	viderX       : (𝓍, 𝓎) ↦ (0, 𝓎)
+	viderY       : (𝓍, 𝓎) ↦ (𝓍, 0)
+	remplirX     : (𝓍, 𝓎) ↦ (3, 𝓎)
+	remplirY     : (𝓍, 𝓎) ↦ (𝓍, 5)
+	verserXdansY : (𝓍, 𝓎) ↦ (           0, min(𝓍+𝓎, 5))
+	verserYdansX : (𝓍, 𝓎) ↦ (min(𝓍+𝓎, 3),            0)
+	
+- La fonction de succession : succ : (s, a) ↦ a(s).
+
+- Les états buts : {(𝓍, 4) : 𝓍 ∈ [0, 3]}, donc tous les états où la cruche de 5 ℓ est remplie de 4 ℓ d'eau.
+
+- La fonction de coût : Non nécessaire pour ce modèle.
