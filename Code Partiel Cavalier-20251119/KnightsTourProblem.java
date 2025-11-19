@@ -14,7 +14,12 @@ public class KnightsTourProblem {
     
     /** Retourne l'état initial : une grille vide avec le cavalier sur un coin */
     public State initialState(){
-        return new State(new int[this.NB_ROWS][this.NB_COLS], new Position(), 0);
+        int[][] grille = new int[this.NB_ROWS][this.NB_COLS];
+        for (int i = 0; i < NB_ROWS; i++)
+            for (int j = 0; j < NB_COLS; j++)
+                grille[i][j] = 0;
+        grille[0][0] = 2;
+        return new State(grille, new Position(), 1);
     }
 
     /** Retourne la liste des actions */
@@ -33,13 +38,19 @@ public class KnightsTourProblem {
 
     /** Vérifie si l'état est terminal */
     public boolean isGoalState(State state){
-        return state.getScore() != this.NB_ROWS * this.NB_COLS ? false : true;
+        return (state.getScore() != this.NB_ROWS * this.NB_COLS) ? false : true;
     }
 
 
     /** Retourne l'état successeur après avoir appliqué une action */
     public State succession(State state, Action action){
-        throw new UnsupportedOperationException("You must implement the succession() method !");
+
+        // Est-ce qu'on vérifie que l'action est légale ? Je crois que Node.isActionValid s'en occupe mais je n'en suis pas sûr.
+
+        int[][] grille = state.getBoard();
+        // Comment modifier la grille si on ne peut pas récupérer chacune des coordonnées d'un objet Position ?
+
+        return new State(grille, state.getKnight().move(action.dx, action.dy), state.getScore() + 1);
     }
 
 

@@ -80,3 +80,16 @@ La fonction de coût : non nécessaire pour ce modèle.
 Question 2.
 On estime l'espace d'état par le nombre d'états avec une composante égale à 2 et toutes les autres valant 0 ou 1 sachant qu'il y a 64 composantes. Donc on a au plus 64×2⁶³ états accessibles, soit 2⁶⁹.
 Dans le cas plus général d'une grille de taille 𝓃 on a au plus 𝓃 × 2^(𝓃−1) états accessibles.
+
+
+Exercice 4. Cannibales
+
+Question 1.
+L'ensemble des états : (⟦0,3⟧²)×{g, d}×(⟦0,3⟧²) un ensemble de triplets où :
+	- La première composante est un couple dont la première composante est le nombre de missionnaires et la seconde le nombre de cannibles à gauche de la rivière ;
+	- La deuxième composante est la position du bateau ;
+	- La troisième composante représente la même chose que la première mais à droite de la rivière.
+
+L'état initiale : ((3, 3), g, (0, 0)) tout le monde est à gauche et le bateau aussi.
+
+Les actions : 
