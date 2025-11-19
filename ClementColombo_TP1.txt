@@ -7,10 +7,10 @@ TP 1 & 2 Introduction aux algorithmes de recherche non-informé
 Exercice 1. Un peu de théorie
 
 Question 1.
-- État                   : un moment dans le recherche de la résolution du problème.
+- État                   : un moment dans la recherche de la résolution du problème.
 - Espace d'états         : Tous les états qu'on peut atteindre depuis le 1er état (état initial).
-- Action                 : Ce qu'un solveur peut accomplir pour cherche à avancer.
-- Fonction de succession : ce permet d'aller vers un nouvelle état depuis un ancien état et un action donnée.
+- Action                 : Ce qu'un solveur peut accomplir pour chercher à avancer.
+- Fonction de succession : ce qui permet d'aller vers un nouvelle état depuis un ancien état et une action donnée.
 - Graphe d'états         : Tous les états reliés par les actions permettant de passer d'un état à un autre.
 
 Question 2.
@@ -21,20 +21,62 @@ Alors qu'une description d'état permet de ne conserver que les informations uti
 Exercice 2. Modélisation
 
 Question 1.
-- L'ensemble des états : {(𝓍, 𝓎) : 𝓍 ∈ [0, 3], 𝓎 ∈ [0, 5]}, chaque couple (𝓍, 𝓎) représente le volume d'eau dans chacune des deux cruches (𝓍 pour la cruche de 3 ℓ et 𝓎 pour celle de 5 ℓ).
+- L'ensemble des états : ⟦0, 3⟧×⟦0, 5⟧ où la première composante représente le volume d'eau dans la cruche de 3 ℓ, et la seconde composante représente le volume d'eau dans la cruche de 5 ℓ.
 
-- L'état initial : Le couple (0, 0), représentant donc les deux cruches vides.
+Question 2.
+- L'état initial : Le couple (0, 0) représentant les deux cruches vides.
 
-- Les actions :
-	viderX       : (𝓍, 𝓎) ↦ (0, 𝓎)
-	viderY       : (𝓍, 𝓎) ↦ (𝓍, 0)
-	remplirX     : (𝓍, 𝓎) ↦ (3, 𝓎)
-	remplirY     : (𝓍, 𝓎) ↦ (𝓍, 5)
-	verserXdansY : (𝓍, 𝓎) ↦ (           0, min(𝓍+𝓎, 5))
-	verserYdansX : (𝓍, 𝓎) ↦ (min(𝓍+𝓎, 3),            0)
-	
-- La fonction de succession : succ : (s, a) ↦ a(s).
+- Les actions : Pour un état (𝓍, 𝓎) donné on note les actions suivantes :
+	viderX       = (−𝓍, 0) ;
+	viderY       = (0, −𝓎) ;
+	remplirX     = (+3−𝓍, 0) ;
+	remplirY     = (0, +5−𝓎) ;
+	verserXdansY = (−min(𝓍, 5−𝓎), +min(𝓍, 5−𝓎)) ;
+	verserYdansX = (+min(3−𝓍, 𝓎), −min(3−𝓍, 𝓎)).
 
-- Les états buts : {(𝓍, 4) : 𝓍 ∈ [0, 3]}, donc tous les états où la cruche de 5 ℓ est remplie de 4 ℓ d'eau.
+- La fonction de succession : succ : (𝓈, 𝒶) ↦ 𝓈 + 𝒶 (addition composante par composante).
+
+- L'ensemble des états buts : ⟦0, 3⟧×{4} tous les états où la cruche de 5 ℓ est remplie de 4 ℓ d'eau.
 
 - La fonction de coût : Non nécessaire pour ce modèle.
+
+Question 3.
+On a au plus Card(l'ensemble des états) états, c'est-à-dire 4×6. Donc la taille de l'espace d'états est d'au plus 24 états.
+
+Question 4.
+Graphe dessiné à la main, preuve de l'existence du dessin à la question suivante.
+
+Question 5.
+La résolution la plus courte est en six actions :
+(0, 0) remplirY (0, 5) verserYdansX (3, 2) viderX (0, 2) verserYdansX (2, 0) remplirY (2, 5) verserYdansX (3, 4).
+
+
+Exercice 3. Problème du Cavalier
+
+Question 1.
+L'ensemble des états : l'ensemble des matrices de dimension 8 par 8 avec une unique composante égale à 2 et les 63 autres composantes dans {0, 1}. Les composantes égales à 0 sont les cases non visitées, les composantes égales à 1 sont les composantes visitées, et la composante égale à 2 est la position du cavalier (et est donc visitée).
+
+L'état initiale : La matrice nulle avec la composante supérieure gauche est le cavalier (égale à 2).
+
+Les actions : On note les actions suivantes :
+	hhd = (+2, +1) ;
+	ddh = (+1, +2) ;
+	ddb = (−1, +2) ;
+	bbd = (−2, +1) ;
+	bbg = (−2, −1) ;
+	ggb = (−1, −2) ;
+	ggh = (+1, −2) ;
+	hhg = (+2, −1).
+
+La fonction de succession : succ : (𝓈, 𝒶) ↦ 𝓈' tel que 𝓈' est une copie de 𝓈 à la différence que si on note (𝒾, 𝒿) les coordonnées de la composante du cavalier dans 𝓈 on a :
+	- la composante de coordonnées (𝒾, 𝒿) + 𝒶 dans 𝓈 est non visitée (égale à 0) ;
+	- les coordonnées du cavalier dans 𝓈' sont (𝒾, 𝒿) + 𝒶 ;
+	- dans 𝓈' la composante (𝒾, 𝒿) est visitée (égale à 1).
+
+L'ensemble des états buts : les matrices où toutes les composantes sont égales à 1 exceptée une unique égale à 2.
+
+La fonction de coût : non nécessaire pour ce modèle.
+
+Question 2.
+On estime l'espace d'état par le nombre d'états avec une composante égale à 2 et toutes les autres valant 0 ou 1 sachant qu'il y a 64 composantes. Donc on a au plus 64×2⁶³ états accessibles, soit 2⁶⁹.
+Dans le cas plus général d'une grille de taille 𝓃 on a au plus 𝓃 × 2^(𝓃−1) états accessibles.
