@@ -34,7 +34,7 @@ Question 2.
 	verserXdansY = (−min(𝓍, 5−𝓎), +min(𝓍, 5−𝓎)) ;
 	verserYdansX = (+min(3−𝓍, 𝓎), −min(3−𝓍, 𝓎)).
 
-- La fonction de succession : succ : (𝓈, 𝒶) ↦ 𝓈 + 𝒶 (addition composante par composante).
+- La fonction de succession : succ : (𝓈, 𝒶) ↦ 𝓈+𝒶 (addition composante par composante).
 
 - L'ensemble des états buts : ⟦0, 3⟧×{4} tous les états où la cruche de 5 ℓ est remplie de 4 ℓ d'eau.
 
@@ -91,25 +91,26 @@ Question 5.
 Exercice 4. Cannibales
 
 Question 1.
-L'ensemble des états : {((𝓍, 𝓎), 𝒷, (3−𝓍, 3−𝓎)) : 𝓍, 𝓎 ∈ ⟦0, 3⟧, 𝒷 ∈ {0, 1}} un ensemble de triplets où :
-	- La première composante est un couple dont la première composante est le nombre de missionnaires et la seconde le nombre de cannibales à gauche de la rivière ;
-	- La deuxième composante est la position du bateau ;
-	- La troisième composante représente la même chose que la première mais à droite de la rivière.
+L'ensemble des états : ⟦0, 3⟧²×{0, 1} où la première composante représente les missionnaires à gauche de la rivère, la seconde les cannibales aussi à gauche, et la troisième la postion du bateau.
 
-L'état initiale : ((3, 3), g, (0, 0)) tout le monde est à gauche et le bateau aussi.
+L'état initiale : ((3, 3), 0) tout le monde est à gauche et le bateau aussi.
 
-Les actions : Pour un état ((𝓍, 𝓎), 𝒷, (3−𝓍, 3−𝓎)) donné on note les actions suivantes :
-	GàD1M   = ((−1, 0), 1, (+1, 0))
-	GàD2M   = ((−2, 0), 1, (+2, 0))
-	GàD1C   = ((0, −1), 1, (0, +1))
-	GàD2C   = ((0, −2), 1, (0, +2))
-	GàD1M1C = ((−1, −1), 1, (+1, +1))
-	DàG1M   = ((+1, 0), 0, (−1, 0))
-	DàG2M   = ((+2, 0), 0, (−2, 0))
-	DàG1C   = ((0, +1), 0, (0, −1))
-	DàG2C   = ((0, +2), 0, (0, −2))
-	DàG1M1C = ((+1, +1), 0, (−1, −1))
+Les actions : On note les actions suivantes :
+	GàD_1M   = ((−1, 0), +1)
+	GàD_2M   = ((−2, 0), +1)
+	GàD_1C   = ((0, −1), +1)
+	GàD_2C   = ((0, −2), +1)
+	GàD_1M1C = ((−1, −1), +1)
+	DàG_1M   = ((+1, 0), −1)
+	DàG_2M   = ((+2, 0), −1)
+	DàG_1C   = ((0, +1), −1)
+	DàG_2C   = ((0, +2), −1)
+	DàG_1M1C = ((+1, +1), −1)
 
-La fonction de succession : succ : (𝓈, 𝒶) ↦
+La fonction de succession : succ : (𝓈, 𝒶) ↦ 𝓈+𝒶 (addition composante par composante) tel que 𝓈+𝒶 est un état et que le nombre de missionnaires 𝓍 et celui des cannibles 𝓎 vérifient 𝓍 ∈ {0, 3, 𝓎}.
 
-La fonction de coût : Le coût d'un état à un autre est 1.
+La fonction de coût : Le coût d'un état à un autre est de 1.
+
+
+Question 2.
+On a certe beaucoup d'actions mais à chaque état en fait beaucoup ne sont pas légales ou ramènent dans un état passé. Et donc, mentalement, quand on recherche on va sans arrêt en arrière dans notre pensée. Je pense que la difficulté réside ici.
