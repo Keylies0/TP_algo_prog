@@ -38,13 +38,8 @@ public class KnightsTourProblem {
 
     /** Vérifie si l'état est terminal */
     public boolean isGoalState(State state){
-        for (int i = 0; i < NB_ROWS; i++)
-            for (int j = 0; j < NB_COLS; j++)
-                if (state.getBoard()[i][j] == 0)
-                    return false;
-        return true;
+        return (state.getScore() != NB_ROWS * NB_COLS) ? false : true;
     }
-
 
     /** Retourne l'état successeur après avoir appliqué une action */
     public State succession(State state, Action action){
