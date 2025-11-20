@@ -38,7 +38,7 @@ Question 2.
 
 - L'ensemble des états buts : ⟦0, 3⟧×{4} tous les états où la cruche de 5 ℓ est remplie de 4 ℓ d'eau.
 
-- La fonction de coût : Non nécessaire pour ce modèle.
+- La fonction de coût : Le coût d'un état à un autre est de 1.
 
 Question 3.
 On a au plus Card(l'ensemble des états) états, c'est-à-dire 4×6. Donc la taille de l'espace d'états est d'au plus 24 états.
@@ -75,7 +75,7 @@ La fonction de succession : succ : (𝓈, 𝒶) ↦ 𝓈' tel que 𝓈' est une 
 
 L'ensemble des états buts : les matrices où toutes les composantes sont égales à 1 exceptée une unique égale à 2.
 
-La fonction de coût : non nécessaire pour ce modèle.
+La fonction de coût : Le coût d'un état à un autre est de 1.
 
 Question 2.
 On estime l'espace d'état par le nombre d'états avec une composante égale à 2 et toutes les autres valant 0 ou 1 sachant qu'il y a 64 composantes. Donc on a au plus 64×2⁶³ états accessibles, soit 2⁶⁹.
@@ -99,4 +99,17 @@ L'ensemble des états : {((𝓍, 𝓎), 𝒷, (3−𝓍, 3−𝓎)) : 𝓍, 𝓎
 L'état initiale : ((3, 3), g, (0, 0)) tout le monde est à gauche et le bateau aussi.
 
 Les actions : Pour un état ((𝓍, 𝓎), 𝒷, (3−𝓍, 3−𝓎)) donné on note les actions suivantes :
-	
+	GàD1M   = ((−1, 0), 1, (+1, 0))
+	GàD2M   = ((−2, 0), 1, (+2, 0))
+	GàD1C   = ((0, −1), 1, (0, +1))
+	GàD2C   = ((0, −2), 1, (0, +2))
+	GàD1M1C = ((−1, −1), 1, (+1, +1))
+	DàG1M   = ((+1, 0), 0, (−1, 0))
+	DàG2M   = ((+2, 0), 0, (−2, 0))
+	DàG1C   = ((0, +1), 0, (0, −1))
+	DàG2C   = ((0, +2), 0, (0, −2))
+	DàG1M1C = ((+1, +1), 0, (−1, −1))
+
+La fonction de succession : succ : (𝓈, 𝒶) ↦
+
+La fonction de coût : Le coût d'un état à un autre est 1.

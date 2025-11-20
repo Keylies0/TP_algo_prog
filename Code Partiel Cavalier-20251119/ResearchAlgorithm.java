@@ -5,7 +5,7 @@ public class ResearchAlgorithm {
     // type de retour List<Node> pour Question 5
     public static Node search(KnightsTourProblem problem){
         int counter = 0;
-        List<Node> frontier = new LinkedList<>();
+        LinkedList<Node> frontier = new LinkedList<>();
         Node root = new Node(problem.initialState(), null, null);
         frontier.add(root);
         
@@ -14,7 +14,8 @@ public class ResearchAlgorithm {
         */
 
         while(!frontier.isEmpty()){
-            Node currentNode = frontier.remove(0);
+            //Node currentNode = frontier.remove(0);
+            Node currentNode = frontier.removeLast();
             counter += 1;
             if (problem.isGoalState(currentNode.getState())){
                 System.out.println("Found a solution after evaluating " + counter + " nodes.");
