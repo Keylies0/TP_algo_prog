@@ -2,27 +2,33 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ResearchAlgorithm {
-
-    public static List<Node> search(KnightsTourProblem problem){
+    // type de retour List<Node> pour Question 5
+    public static Node search(KnightsTourProblem problem){
         int counter = 0;
         List<Node> frontier = new LinkedList<>();
         Node root = new Node(problem.initialState(), null, null);
         frontier.add(root);
         
-        List<Node> nodes = new LinkedList<>(); // Q5
+        /** Question 5
+        List<Node> nodes = new LinkedList<>();
+        */
 
         while(!frontier.isEmpty()){
             Node currentNode = frontier.remove(0);
             counter += 1;
             if (problem.isGoalState(currentNode.getState())){
-                //System.out.println("Found a solution after evaluating " + counter + " nodes.");
-                //return currentNode;
-                nodes.add(currentNode); // Q5
+                System.out.println("Found a solution after evaluating " + counter + " nodes.");
+                return currentNode;
+                /** Question 5
+                nodes.add(currentNode);
+                */
             }
             frontier.addAll(currentNode.expand(problem));
         }
-        //return null;
-        return nodes; // Q5
+        return null;
+        /** Question 5
+        return nodes;
+        */
     }
     
 }

@@ -38,7 +38,11 @@ public class KnightsTourProblem {
 
     /** Vérifie si l'état est terminal */
     public boolean isGoalState(State state){
-        return (state.getScore() != NB_ROWS * NB_COLS) ? false : true;
+        // return state.getScore() == NB_ROWS * NB_COLS;
+        /** Question 6 */
+        return state.getScore() == NB_ROWS * NB_COLS
+                && (state.getKnight().x == 2 && state.getKnight().y == 1
+                    || state.getKnight().x == 1 && state.getKnight().y == 2);
     }
 
     /** Retourne l'état successeur après avoir appliqué une action */
