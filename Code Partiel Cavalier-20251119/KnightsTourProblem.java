@@ -33,24 +33,30 @@ public class KnightsTourProblem {
             new Action(-1, -2),
             new Action(+1, -2),
             new Action(+2, -1)
-    );
+        );
     }
 
     /** Vérifie si l'état est terminal */
     public boolean isGoalState(State state){
-        return (state.getScore() != this.NB_ROWS * this.NB_COLS) ? false : true;
+        for (int i = 0; i < NB_ROWS; i++)
+            for (int j = 0; j < NB_COLS; j++)
+                if (state.getBoard()[i][j] == 0)
+                    return false;
+        return true;
     }
 
 
     /** Retourne l'état successeur après avoir appliqué une action */
     public State succession(State state, Action action){
-
-        // Est-ce qu'on vérifie que l'action est légale ? Je crois que Node.isActionValid s'en occupe mais je n'en suis pas sûr.
-
-        int[][] grille = state.getBoard();
-        // Comment modifier la grille si on ne peut pas récupérer chacune des coordonnées d'un objet Position ?
-
-        return new State(grille, state.getKnight().move(action.dx, action.dy), state.getScore() + 1);
+        // Node.isActionValid se charge de vérifier si l'action est valide pour state
+        int[][] grille = new int[NB_ROWS][NB_COLS];
+        for (int i = 0; i < NB_ROWS; i++)
+            grille[i] = state.getBoard()[i].clone();
+        Position oldKnight = state.getKnight();
+        Position newKnight = oldKnight.move(action.dx, action.dy);
+        grille[oldKnight.x][oldKnight.y] = 1;
+        grille[newKnight.x][newKnight.y] = 2;
+        return new State(grille, newKnight, state.getScore() + 1);
     }
 
 
