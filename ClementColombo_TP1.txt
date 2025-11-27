@@ -114,3 +114,6 @@ La fonction de coût : Le coût d'un état à un autre est de 1.
 
 Question 2.
 Je pense que les gens ont du mal à résoudre à cause des nombreux cycles.
+
+Question 3.
+C'est une bonne à cause des nombreux cycles du graphes d'états. De plus, avec une solution optimale de 11 actions et une algorithme de recherche tel que Profondeur Itéré la mémoir n'est pas trop solicitée.
