@@ -7,40 +7,36 @@ public class Node {
     private final State state;  // l'état associé à ce nœud
     private final Node parent;  // le nœud parent
     private final CannibalesProblem.Action parentAction; // l'action qui a conduit à cet état
+    private final int profondeur;
 
     
-    /* ------------------ constructeurs ------------------ */
+    /* ------------------ constructeur ------------------ */
     public Node(State state, Node node, CannibalesProblem.Action action) {
         this.state = state;
         this.parent = node;
         this.parentAction = action;
+        if (node == null)
+            this.profondeur = 0;
+        else
+            this.profondeur = node.getProfondeur() + 1;
     }
 
 
     /* -------------------- getteurs -------------------- */
-    public State getState() {
-        return this.state;
-    }
-    
-    public Node getParent() {
-        return parent;
-    }
-
-    public CannibalesProblem.Action getParentAction() {
-        return parentAction;
-    }
+    public State getState() { return this.state; }
+    public Node getParent() { return parent;     }
+    public CannibalesProblem.Action getParentAction() { return parentAction; }
+    public int getProfondeur() { return this.profondeur; }
 
 
     /* -------------------- methods --------------------- */
     /** Génère la liste des noeuds enfants */
-    public List<Node> expand(CannibalesProblem problem){
+    public List<Node> expand(CannibalesProblem problem) {
         List<Node> children = new LinkedList<>();
 
         for (CannibalesProblem.Action action : problem.actions()) {
             Node child = this.buildChild(problem, action);
-            if (child != null) {
-                children.add(child);
-            }
+            if (child != null) children.add(child);
         }
         return children;
     }
@@ -81,7 +77,7 @@ public class Node {
     public void printSolution() {
         List<Node> solutionPath = this.path();
         for (Node node : solutionPath) {
-            System.out.println("Action menant à cet état : " + node.parentAction);
+            //System.out.println("Action menant à cet état : " + node.parentAction);
             System.out.println("Score de l'état : " + node.getState().getScore());
             System.out.println(node.getState());
             System.out.println();

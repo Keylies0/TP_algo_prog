@@ -7,7 +7,7 @@ public class State {
     private final int score;
 
 
-    /* ------------------ constructeurs ------------------ */
+    /* ------------------ constructeur ------------------ */
 
     public State(int MISSIONNAIRES, int CANNIBALES, int BATEAU, int score) {
         if (MISSIONNAIRES < 0 || MISSIONNAIRES > 3) throw new IllegalArgumentException("Quantité invalide de missionnaires.");
@@ -32,15 +32,15 @@ public class State {
     public String toString() {
         StringBuffer description = new StringBuffer();
 
-        description.append("Quantité de mouvements : ").append(this.getScore()).append("\n");
+        description.append("Nombre de traversées : ").append(this.getScore()).append("\n");
 
         description.append(this.getMissionnaires()).append("M ");
         description.append(this.getCannibales()   ).append("C ");
 
         if (this.getBateau() == 0)
-            description.append("\\_/ ~~~~~~~~~~ ");
+            description.append("~\\_/~~~~~~~~~~ ");
         else
-            description.append("~~~~~~~~~~ \\_/  ");
+            description.append("~~~~~~~~~~\\_/~  ");
 
         description.append(3 - this.getMissionnaires()).append("M ");
         description.append(3 - this.getCannibales()   ).append("C");
