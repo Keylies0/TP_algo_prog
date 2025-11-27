@@ -1,0 +1,24 @@
+Clément Colombo
+
+Algorithmies pour la Résolution de Problèmes L3
+TP 3 Recherche non-informée
+
+
+Exercice 1. Un peu de théorie
+Question 1. Le graphe d'état est un graphe orienté dont les noeuds sont tous les états possibles et les arcs les actions permettant de passer d'un état à un autre.
+Tandis que l'arbre de recherche est un arbre potentiellement infini dont la racine est l'état initial, les noeuds sont les états accessibles depuis l'état initial, les feuilles les solutions ou les états n'admettant plus aucune action, et les arêtes sont des actions menant l'état du noeud parent à l'état d'un noeud fils.
+
+Question 2. Un graphe d'états fini comprenant un cycle engendre un arbre de recherche infini. Les graphes d'états générant un arbre de recherche fini sont les graphes acycliques, c'est-à-dire les arbres.
+
+Question 3. Un état est formellement un instant dans la résolution d'un problème. Un noeud de l'arbre de recherche est un noeud contant un état.
+
+
+Exercice 2.
+Question 1. C'est une recherche BFS. Parce qu'on étudie le premier noeud de la frontière.
+
+Question 2. Cas 5x5 : complexité en taille O(8²⁵) d'après la formule du cours
+            Cas 6x6 : complexité en taille O(8³⁶) d'après la formule du cours
+
+Question 3. Node currentNode = frontier.removeLast();
+
+

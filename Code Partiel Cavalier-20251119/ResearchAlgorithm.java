@@ -31,5 +31,23 @@ public class ResearchAlgorithm {
         return nodes;
         */
     }
-    
+
+
+    public static Node IteratedDFS(KnightsTourProblem problem, int l) {
+        LinkedList<Node> frontier = new LinkedList<Node>();
+        Node root = new Node(problem.initialState(), null, null);
+        frontier.add(root);
+
+        while (!frontier.isEmpty()) {
+            Node currentNode = frontier.removeLast();
+            
+            if (problem.isGoalState(currentNode.getState())) 
+                return currentNode;
+
+            if (currentNode.getDepth() <= l)
+                frontier.addAll(currentNode.expand(problem));
+        }
+
+        return null;
+    }
 }

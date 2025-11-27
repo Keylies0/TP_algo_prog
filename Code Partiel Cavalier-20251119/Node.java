@@ -7,6 +7,7 @@ public class Node {
     private final State state;  // l'état associé à ce nœud
     private final Node parent;  // le nœud parent
     private final KnightsTourProblem.Action parentAction; // l'action qui a conduit à cet état
+    private final int depth;
 
     
     /* ------------------ constructeurs ------------------ */
@@ -14,6 +15,7 @@ public class Node {
         this.state = state;
         this.parent = node;
         this.parentAction = action;
+        this.depth = (node != null) ? node.getDepth() + 1 : 0;
     }
 
 
@@ -29,6 +31,8 @@ public class Node {
     public KnightsTourProblem.Action getParentAction() {
         return parentAction;
     }
+
+    public int getDepth() { return this.depth; }
 
 
     /* -------------------- methods --------------------- */
