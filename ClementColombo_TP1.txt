@@ -113,4 +113,4 @@ La fonction de coût : Le coût d'un état à un autre est de 1.
 
 
 Question 2.
-On a certe beaucoup d'actions mais à chaque état en fait beaucoup ne sont pas légales ou ramènent dans un état passé. Et donc, mentalement, quand on recherche on va sans arrêt en arrière dans notre pensée. Je pense que la difficulté réside ici.
+Je pense que les gens ont du mal à résoudre à cause des nombreux cycles.
