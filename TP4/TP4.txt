@@ -1,0 +1,21 @@
+Algorithmes pour les Résolution de Problèmes L. 3
+T.P. 4 & 5 Recherche informée
+
+Exercice 1. Un sacré voyage
+Question 1.
+
+On note 𝐕 l'ensemble des identifiants des villes.
+Ensemble d'états :
+	La réunion des uplets de taille de 0 à 48 d'identifiants différents.
+État initial :
+	Le 0-uplet → ().
+État terminaux :
+	Les 48-uplets d'identifiants différents.
+Ensemble d'actions :
+	Les identifiants.
+Ensemble d'actions légales pour un état 𝓈 :
+	Les identifiants n'appartenant pas à 𝓈 → {𝒶 ∈ 𝐕 | 𝒶 ∉ 𝓈}
+Fonction de succession :
+	Ajouter le nouvel identifiant à la fin de l'état → succ : (𝓈, 𝒶) ↦ 𝓈.ajouterFin(𝒶).
+Fonction de coût :
+	La distance entre les deux villes → coût(𝓈, 𝓈') ↦ √((𝓈'.𝚡 - 𝓈.𝚡)² + (𝓈'.𝚢 - 𝓈.𝚢)²).

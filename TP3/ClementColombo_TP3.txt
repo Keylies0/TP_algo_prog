@@ -21,4 +21,12 @@ Question 2. Cas 5x5 : complexité en taille O(8²⁵) d'après la formule du cou
 
 Question 3. Node currentNode = frontier.removeLast();
 
+Question 4. L'algorithmes IteratedDFS n'est pas pertinent pour ce poblème parce que nous connaissons déjà la profondeur excacte de tous les solutions, à savoir longueur*largeur. Il serait donc plus rapide de faire un simple DFS.
 
+Question 5. Avec DFS c'est rapide, mais avec IteratedDFS c'est laborieux. Avec des tailles plus grandes c'est d'autant plus flagrant.
+
+
+Exercice 3.
+Question 1. search : 11'753 neouds ; DFS : Ne peut s'arrêter car le programme rentre dans une branche infinie ; IteratedDFS : 4'718. C'est donc IteratedDFS le plus efficace ici.
+
+Question 2. search : 15 neouds ; DFS : 12 ; IteratedDFS : 12. Donc IteratedDFS et DFS sont plus efficaces que search, et je crois que DFS est le meilleur puisque que grâce à memory il parcourt plus rapidement l'arbre sans boucler.
