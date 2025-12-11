@@ -4,6 +4,8 @@ import java.lang.Math;
 
 public class TravelProblem {
 
+    private final int firstCity = 0; // ville de depart
+    private final int lastCity = 1; // ville d'arrivee
     private final int[][] coord = {
         {6734, 1453},
         {2233,   10},
@@ -54,24 +56,33 @@ public class TravelProblem {
         {5185, 3258},
     };
 
+
+    public int getFirstCity() { return this.firstCity; }
+    public int getLastCity() { return this.lastCity; }
+
     /** Retourne l'état initial */
-    public State initialState() { return new State(new LinkedList<Integer>(), 0); }
+    public State initialState() { return new State(this.getFirstCity(), this.getLastCity()); }
 
     /** Retourne la liste des actions */
     public List<Action> actions() {
         List<Action> actions = new LinkedList<>();
-        for (int id = 0; i < 48; i++)
+        for (int id = 0; id < 47; id++)
             actions.add(new Action(id));
         return actions;
     }
 
     /** Vérifie si l'état est terminal */
-    public boolean isGoalState(State state) { return state.getVoyage().getSize() == 48; }
+    public boolean isGoalState(State state) {
+        return state.getVoyage().size() == 47;
+    }
 
     /** Retourne l'état successeur après avoir appliqué une action */
     public State succession(State state, Action action) {
         // Node.isActionValid se charge de vérifier si l'action est valide pour state
-        return new State(state.getVoyage().add(action.id), state.getScore() + action.cout(state));
+        LinkedList<Integer> newVoyage = new LinkedList<>();
+        newVoyage.addAll(state.getVoyage());
+        newVoyage.add(newVoyage.size() - 1, action.id);
+        return new State(newVoyage, state.getScore() + action.cout(state));
     }
 
 
@@ -87,7 +98,16 @@ public class TravelProblem {
             if (state.getVoyage().isEmpty())
                 return 0;
 
-            return Marth.sqrt(Math.pow(coord[this.id][0] - coord[state.getVoyage().getLast()][0], 2)                            
-                              + Math.pow(coord[this.id][1] - coord[state.getVoyage().getLast()][2], 2)); }
+            return (int) Math.round(Math.sqrt(
+                Math.pow(
+                    coord[this.id][0] - coord[state.getVoyage().getLast()][0], 
+                    2
+                )                            
+                + Math.pow(
+                    coord[this.id][1] - coord[state.getVoyage().getLast()][1],
+                    2
+                )
+            ));
+        }
     }
 }

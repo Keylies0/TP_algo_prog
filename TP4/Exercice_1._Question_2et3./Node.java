@@ -1,13 +1,16 @@
 import java.util.LinkedList;
 import java.util.List;
+import java.lang.Math;
 
 
-public class Node {
+public class Node implements Comparable<Node> {
 
     private final State state;  // l'état associé à ce nœud
     private final Node parent;  // le nœud parent
     private final TravelProblem.Action parentAction; // l'action qui a conduit à cet état
     private final int depth;
+    private final int cost;
+    
 
     
     /* ------------------ constructeur ------------------ */
@@ -15,10 +18,14 @@ public class Node {
         this.state = state;
         this.parent = node;
         this.parentAction = action;
-        if (node == null)
+        if (node == null) {
             this.depth = 0;
-        else
+            this.cost = 0;
+        }
+        else {
             this.depth = node.getDepth() + 1;
+            this.cost = node.getCost() + action.cout(state);
+        }
     }
 
 
@@ -27,6 +34,7 @@ public class Node {
     public Node getParent() { return parent;     }
     public TravelProblem.Action getParentAction() { return parentAction; }
     public int getDepth() { return this.depth; }
+    public int getCost() { return this.cost; }
 
 
     /* -------------------- methods --------------------- */
@@ -43,7 +51,7 @@ public class Node {
 
     /** Vérifie si une action est valide pour ce noeud */
     private boolean isActionValid(TravelProblem.Action action) {
-        return this.getState().getVoyage().contains(action.id);
+        return !this.getState().getVoyage().contains(action.id);
     }
 
     /** Génère un nœud enfant pour une action donnée. Si l'action n'est pas valide, retourne null */
@@ -75,4 +83,12 @@ public class Node {
             System.out.println();
         }
     }
+
+/*
+    @Override
+    public int compareTo(Node that) {
+        int nbVerticesThis = 47
+        return run() - run();
+    }
+*/
 }
